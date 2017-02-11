@@ -1,0 +1,213 @@
+{
+
+"MQTT":{
+		
+"CloudMQTT":{
+"BrokerAddress":"127.0.0.1", 
+"Port":1883,
+"SnapiPort":6068,
+"Username": null, 
+"Password": null, 
+"EnableSSL":false,
+"ClientID":"",
+"CACert":"ca.crt",
+"ClientCert":"client.crt",
+"ClientKey":"client.key",
+"SubscribeTopics":[	"teevr/sensors/rcombo/#",
+					"teevr/sensors/compressed/#",
+					"teevr/sensors/rdatamodel/#",
+					"teevr/sensors/jsonmodel/#",
+					"teevr/sensors/scale/#",
+					"teevr/msg/#",
+					"teevr/getstatus/#"		
+
+			],
+"PublishTopics":["teevr/DataXlrator"
+			]
+},
+"EdgeMQTT":{
+"BrokerAddress":"127.0.0.1", 
+"Port":1883,
+"SnapiPort":6067,
+"Username": null, 
+"Password":null, 
+"EnableSSL":false,
+"ClientID":"",
+"CACert":"ca.crt",
+"ClientCert":"client.crt",
+"ClientKey":"client.key",
+"SubscribeTopics":["teevr/sensors/combo/#",
+		    "teevr/cloud/#"	
+			]
+},
+
+"MonitorMQTT":{
+"BrokerAddress":"127.0.0.1", 
+"Port":1883,
+"Username": null, 
+"Password":null, 
+"EnableSSL":false,
+"ClientID":"",
+"CACert":"ca.crt",
+"ClientCert":"client.crt",
+"ClientKey":"client.key",
+"SubscribeTopics":[
+			]
+},
+
+"MgmtMQTT":{
+"BrokerAddress":"127.0.0.1", 
+"Port":1883,
+"Username": null, 
+"Password":null, 
+"EnableSSL":false,
+"ClientID":"",
+"CACert":"ca.crt",
+"ClientCert":"client.crt",
+"ClientKey":"client.key",
+"SubscribeTopics":["teevr/mgmt/restart/#",
+					"teevr/mgmt/configupdate/#",
+					"teevr/mgmt/swupdate/#",
+					"teevr/mgmt/advanced/#"
+					
+			]
+}
+
+		},
+		
+"COAP":{
+"CloudCOAP":{
+"ServerAddress":"127.0.0.1", 
+"Port":5684,
+"UseTCP":true,
+"EnableTLS":false,
+"TrustStore":"trustStore.jks",
+"TrustStorePassword":"rootPass",
+"KeyStore":"keyStore.jks",
+"KeyStorePassword":"endPass"
+},
+
+"EdgeCOAP":{
+"ServerAddress":"127.0.0.1", 
+"Port":5683,
+"UseTCP":true,
+"EnableTLS":false,
+"TrustStore":"trustStore.jks",
+"TrustStorePassword":"rootPass",
+"KeyStore":"keyStore.jks",
+"KeyStorePassword":"endPass"
+}
+
+},
+
+
+"CloudDB":
+{
+"postgres":{
+"ServerAddress":"127.0.0.1", 
+"Port":5432,
+"username": "postgres", 
+"password":"postgres", 
+"PerfDBName":"teevrperf",
+"EventsDBName":"events",
+"DataDBName":"teevrtest"
+},
+"influxdb":{
+"ServerAddress":"127.0.0.1", 
+"HTTPPort":8086,
+"username": "root", 
+"password":"root", 
+"PerfDBName":"teevrperf",
+"EventsDBName":"events",
+"DataDBName":"teevrtest"
+}
+},
+
+"EdgeDB":
+{
+"postgres":
+{
+"ServerAddress":"127.0.0.1", 
+"Port":5432,
+"username": "postgres", 
+"password":"postgres", 
+"PerfDBName":"teevrperf",
+"EventsDBName":"events",
+"DataDBName":"teevrtest"
+},
+
+"influxdb":
+{
+"ServerAddress":"127.0.0.1", 
+"HTTPPort":8086,
+"username": "root", 
+"password":"root", 
+"PerfDBName":"teevrperf",
+"EventsDBName":"events",
+"DataDBName":"teevrtest"
+}
+
+},
+
+"advanced":
+{
+"EnableDataCollector":false,
+"DataFile":"sensorDataxyz.txt",
+"enableJsonData":false,
+"enableZippedJsonData":false,
+"enableProtoData":false,
+"enableCEP":false,
+"enableBenchmarking":true,
+"enablePerfMonitor": true,
+"useCloudMQTTForPerfMonitor":true,
+"useMonitorMQTTForRemoteMgmt":true,
+"enableDataComparison":false,
+"enableWindowSize":true,
+"EnableDBWrite":false,
+"Edgedb":"None",
+"Clouddb":"NONE",
+"EnableDataModel":true,
+"PerfMonitorTimeUnit":"MS",
+"PerfMonitorTimePeriod":1000,
+"LicenseCheckMethod":"TDI",
+"UseDeviceIDinTopic":true,
+"DumpDecompressedOutput":false,
+"Input":"AUTO",
+"Output":"AUTO",
+"InputSource":"MQTT",
+"Edge2Cloud":"MQTT",
+"UAID":"tdi",
+"LogLevel": "INFO"
+},
+
+"compression":
+{
+"SampleSize":50,
+"LowBitsSize":5,
+"HighBitsSize":26,
+"UsePfxEncoding":true,
+"MaxPrecision":5,
+"EnableBatch":false,
+"BatchSize":1000,
+"RegressionSampleSize":10,
+"EnableLinearRegression": false,
+"EnablePolyRegression": false
+},
+
+"mlad":
+{
+"SampleSize":64,
+"LowThreshold":30,
+"HighThreshold":40,
+"CollectData":false
+},
+
+"websockets":
+{
+"EnableWebsockets":false,
+"ServerAddress":"127.0.0.1",
+"Port":8887
+}
+
+
+}

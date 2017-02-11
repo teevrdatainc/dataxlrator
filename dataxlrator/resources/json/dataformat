@@ -1,0 +1,41 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "description": "Data Format file for Teevr Data Platform",
+  "definitions": {
+ 
+       		"DataFormat": {
+      						"type": "object",
+           					"properties": {
+ 	       								"timeStamp":{
+        	          								"type":"long"  
+        	            							},    
+ 	
+           								"compressed": {
+              											"type": "boolean"
+            											},
+            								"data": {
+			 											 "type": "string"
+														}
+          								}
+  							}
+  
+  
+                  },
+  
+  "type": "object",
+  "properties": {
+       			 "sensorsData":
+        					{
+        					"type":"object",
+        					"properties":
+        								{
+            							"combo": {"$ref": "#/definitions/DataFormat"},
+            							"kinoma": {"$ref": "#/definitions/DataFormat"},
+           								"singular": {"$ref": "#/definitions/DataFormat"}
+                                 			                
+            							}
+                           
+        					}   				
+				},
+ "required": ["sensorsData"]    
+}

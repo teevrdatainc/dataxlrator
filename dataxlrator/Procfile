@@ -1,0 +1,1 @@
+web: java -jar teevr-dataxlrator-1.1.13-jar-with-dependencies.jar remote=true configfile=aws-cloud.json

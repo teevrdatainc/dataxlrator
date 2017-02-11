@@ -1,0 +1,10 @@
+{
+  "Model": [
+    {
+      "Name": "MotionDetector",
+      "DataType": "Number",
+      "Precision": 0,
+      "IsMetaData": false
+    }
+  ]
+}

@@ -1,0 +1,691 @@
+{
+"$schema": "http://json-schema.org/draft-04/schema#",
+"title": "EdgeWare Configuration",
+"options": {
+    "disable_collapse": true
+  },
+"definitions": {
+
+	"MQTTConfig": {
+			"type": "object",
+			
+				"properties": {
+					"BrokerAddress": {
+							"type": "string",
+							"title": "MQTT Broker Address",
+							"default": ""
+							},
+					"Port": {
+							"type": "integer",
+							"title": "Port",
+							"default": 1883
+						},
+					"SnapiPort": {
+							"type": "integer",
+							"title": "SNAPI Port",
+							"default": 6067,
+				 	 "options": {
+   				 "hidden": true
+  							}						
+						},
+					"Username": {
+							"type": "string",
+							"title": "User Name",
+							"default": "",
+									 "format": "checkbox",
+			 	 "options": {
+    "hidden": true
+  }
+						},
+					"Password": {
+							"type": "string",
+							"title": "Password",
+							"default": "",
+									 "format": "checkbox",
+			 	 "options": {
+    "hidden": true
+  }
+						    },
+					"EnableSSL": {
+							"type": "boolean",
+							"title": "Enable SSL",
+							 "format": "checkbox",
+							"default": false
+							},
+					"ClientID": {
+							"type": "string",
+							"title": "Client ID",
+							"default": ""
+							},
+					"CACert": {
+							"type": "string",
+							"title": "CA Cert",
+							"default": ""
+							},
+					"ClientCert": {
+							"type": "string",
+							"title": "Client Cert",
+							"default": ""
+							},
+					"ClientKey": {
+							"type": "string",
+							"title": "Client Key",
+							"default": ""
+							},
+					"SubscribeTopics": {
+
+							"title": "MQTT Subscription Topics",
+							"type":"array",
+							"format": "table",
+									 "format": "checkbox",
+			 	 "options": {
+    "hidden": true
+  },
+							"items":
+								{
+									"type":"string",
+									"title": "Topics to Subscribe"
+								},
+								"minItems": 1
+							
+							},
+					"PublishTopics": {
+
+							"title": "MQTT Topic to be Published",
+							"type":"array",
+							"format": "table",
+							"items":
+								{
+									"type":"string",
+									"title": "Topics to be Published "
+								},
+								"minItems": 1
+							
+
+							}
+				}
+},
+
+	"COAPConfig": {
+			"type": "object",
+			
+				"properties": {
+					"ServerAddress": {
+							"type": "string",
+							"title": "COAP Server Address",
+							"default": ""
+							},
+					"Port": {
+							"type": "integer",
+							"title": "COAP Server Port",
+							"default": 5683
+						},
+					"UseTCP": {
+							"type": "boolean",
+							"title": "Use COAP over tcp",
+							"default": true
+						},
+					"EnableTLS": {
+							"type": "boolean",
+							"title": "Enable TLS",
+							 "format": "checkbox",
+							"default": false
+							},
+					"TrustStorePassword": {
+							"type": "string",
+							"title": "Trust Store Password",
+							"default": "",
+									 "format": "checkbox",
+							 "options": {
+									 "hidden": true
+				  			}
+						    },
+					"TrustStore": {
+							"type": "string",
+							"title": "Trust Store",
+							"default": ""
+							},
+					"KeyStorePassword": {
+							"type": "string",
+							"title": "Key Store Password",
+							"default": "",
+									 "format": "checkbox",
+							 "options": {
+									 "hidden": true
+				  			}
+						    },
+					"KeyStore": {
+							"type": "string",
+							"title": "Key Store",
+							"default": ""
+							}
+							
+				}
+},
+
+"PostgresConfig": {
+			"type": "object",
+			"title": "Postgres Database Configuration",
+		"properties": {
+			"ServerAddress": {
+				"type": "string",
+				"title": "Server Address",
+							"default": ""
+					},
+			"Port": {
+				"type": "integer",
+				"title": "Port",
+							"default": ""
+					},
+			"username": {
+				"type": "string",
+				"title": "User Name",
+							"default": ""
+					},
+			"password": {
+				"type": "string",
+				"title": "Password"
+					},
+			"PerfDBName": {
+				"type": "string",
+				"title": "Performance Database"
+					},
+"EventsDBName": {
+"type": "string",
+			"title": "Events Database"
+},
+"DataDBName": {
+"type": "string",
+			"title": "Sensor Data Database"
+}
+}
+},
+
+
+"InfluxdbConfig": {
+			"type": "object",
+			"title": "Influxdb Config",
+			"properties": {
+					"ServerAddress": {
+								"type": "string",
+								"title": "Server Address"
+							},
+					"HTTPPort": {
+								"type": "integer",
+								"title": "HTTP Port Number"
+							},
+					"username": {
+								"type": "string",
+								"title": "User Name"
+							},
+					"password": {
+								"type": "string",
+								"title": "Password"
+							},
+					"PerfDBName": {
+								"type": "string",
+								"title": "Performance Database"
+							},
+					"EventsDBName": {
+								"type": "string",
+								"title": "Events Database"
+							},
+					"DataDBName": {
+								"type": "string",
+				                "title": "Sensor Data Database"
+							}		
+
+
+
+					}
+			}
+
+},
+
+
+"type": "object",
+"properties":
+{
+"MQTT":
+{
+"type": "object",
+			"title": "MQTT",
+"properties":
+{
+"CloudMQTT": {
+"title": "Cloud MQTT Configuration",
+"$ref": "#/definitions/MQTTConfig"},
+
+"EdgeMQTT": {
+"title": "Edge MQTT Configuration",
+"$ref": "#/definitions/MQTTConfig"},
+
+"MonitorMQTT": {
+"options": {
+    "hidden": true
+  },
+"title": "Monitor MQTT Configuration",
+"$ref": "#/definitions/MQTTConfig"
+},
+
+"MgmtMQTT": {
+"options": {
+    "hidden": true
+  },
+"title": "Remote Management MQTT Configuration",
+"$ref": "#/definitions/MQTTConfig"
+}
+
+
+}
+},
+
+
+"COAP":
+{
+"type": "object",
+			"title": "COAP Client Configuration to be used by edge or external data sources like data generator",
+			 "options": {
+    "hidden": true
+  },
+"properties": {
+
+"CloudCOAP": {
+"title": "Cloud COAP Configuration",
+"$ref": "#/definitions/COAPConfig"},
+
+"EdgeCOAP": {
+"title": "Edge COAP Configuration",
+"$ref": "#/definitions/COAPConfig"}
+}
+
+},
+"CloudDB":
+	{
+		"type": "object",
+		 "options": {
+    "hidden": true
+  },
+		"properties":
+		{
+			"influxdb":	
+ 				{
+					"$ref": "#/definitions/InfluxdbConfig"
+				},
+		
+			"postgres": 
+				{			
+					"$ref": "#/definitions/PostgresConfig"}
+				}
+		},	
+
+"EdgeDB":
+	{
+		"type": "object",
+		 "options": {
+    "hidden": true
+  },
+		"properties":
+		
+		{
+			"influxdb": {"$ref": "#/definitions/InfluxdbConfig"},
+
+			"postgres": {"$ref": "#/definitions/PostgresConfig"}
+		}
+	},
+"advanced":
+{ "type": "object",
+"title": "Advanced",
+
+"properties":{
+		"EnableDataCollector":{
+			"type": "boolean",
+			"title": "Enable Data Collector for Simulation",
+			 "format": "checkbox",
+			 	 "options": {
+    "hidden": true
+  }
+			
+				    },
+		"DataFile":{
+			"type": "string",
+			"title": "Datafile to Store Data for Simulation",
+					 "format": "checkbox",
+			 	 "options": {
+    "hidden": true
+  }
+			},
+		"enableJsonData":
+			  {
+			"type": "boolean",
+			"title": "Enable JSON  Data Format between Edge and Cloud",
+			 "format": "checkbox",
+			 	 "options": {
+    "hidden": true
+  }
+			 },
+"enableZippedJsonData":
+{
+			"type": "boolean",
+			"title": "Enable Zipped JSON Data between Edge and Cloud",
+			 "format": "checkbox",
+			 	 "options": {
+    "hidden": true
+  }
+},
+	"enableProtoData":
+		{
+			"type": "boolean",
+			"title": "Enable DataXlator Format between Edge and Cloud",
+			 "format": "checkbox",
+			 	 "options": {
+    "hidden": true
+  }
+		},
+	"enableBenchmarking":
+		{
+			"type": "boolean",
+			"title": "Enable Benchmarking Tests",
+			 "format": "checkbox",
+			 	 "options": {
+    "hidden": true
+  }
+		},
+	"enableCEP":
+		{
+			"type": "boolean",
+			"title": "Enable Complex Event Processing",
+			 "format": "checkbox",
+			 	 "options": {
+    "hidden": true
+  }
+		},	
+	"enablePerfMonitor":
+		{
+			"type": "boolean",
+			"title": "Enable Performance Monitoring",
+			 "format": "checkbox",
+			 	 "options": {
+    "hidden": true
+  }
+		},	
+	"useCloudMQTTForPerfMonitor":
+		{
+			"type": "boolean",
+			"title": "Use CloudMQTT or MonitorMQTT for publishing Perf and Events Stats ",
+			 "format": "checkbox",
+			 "default": true,
+			 	 "options": {
+    "hidden": true
+  }
+		},	
+		
+	"useMonitorMQTTForRemoteMgmt":
+		{
+			"type": "boolean",
+			"title": "Use MonitorMQTT or MgmtMQTT for Remote Mgmt ",
+			 "format": "checkbox",
+			 "default": true,
+			 	 "options": {
+    "hidden": true
+  }
+		},			
+	"enableDataComparison":
+		{
+			"type": "boolean",
+			"title": "Enable Data Comparison in Datagenerator, used only in Datagenerator",
+			 "format": "checkbox",
+			 	 "options": {
+    "hidden": true
+  }
+		},	
+	"enableWindowSize":
+		{
+			"type": "boolean",
+			"title": "Enable Window Size",
+			 "format": "checkbox",
+			 	 "options": {
+    "hidden": true
+  }
+		},
+	"EnableDBWrite":{
+			"type": "boolean",
+			"title": "Enable write to Database for Received Data on Cloud",
+			 "format": "checkbox",
+			 	 "options": {
+    "hidden": true
+  }
+			},
+
+	"Edgedb":{
+			"type":"string",
+			"enum": ["NONE","POSTGRES", "MONGODB","INFLUXDB"],
+			"title": "Database to be used on Edge",
+					 "format": "checkbox",
+			 	 "options": {
+    "hidden": true
+  }
+			
+		},
+	"Clouddb":{
+			"type":"string",
+			"enum": ["NONE","POSTGRES", "MONGODB","INFLUXDB"],
+			"title": "Database to be used on Cloud",
+					 "format": "checkbox",
+			 	 "options": {
+    "hidden": true
+  }
+		},
+	"EnableDataModel":{
+			"type": "boolean",
+			"title": "Enable Data Model for UI",
+			"format": "checkbox",
+			 	 "options": {
+    "hidden": true
+  }
+			},
+
+	"DumpDecompressedOutput":{
+			"type": "boolean",
+			"title": "Dump decompressed values on cloud",
+			"format": "checkbox",
+			 	 "options": {
+    "hidden": true
+  }
+			},
+			
+	"Input":{
+			"type":"string",
+			"enum": [ "AUTO","JSON","CSV"],
+			"title": "Edge Input Data Format. Auto will auto detect the format"
+		},
+	"Output":{
+			"type":"string",
+			"enum": [ "AUTO","JSON","CSV"],
+			"title": "Cloud Output Data Format. AUTO will use input format as output Format"
+			
+		},
+	"PerfMonitorTimeUnit":{
+			"type":"string",
+			"enum": ["NONE","MS", "SEC","MIN","HR"],
+			"title": "Performance Monitor Time Unit. None means no performance monitoring",
+					 "format": "checkbox",
+			 	 "options": {
+    "hidden": true
+  }
+		},	
+
+    "PerfMonitorTimePeriod":{
+			"type": "integer",
+			"title": "Performance Monitor Reporting time period with unit as mentioned in PerfMonitorTimeUnit. This parameter is ignored if PerfMonitorTimeUnit is set to NONE"
+			   },
+
+	"LicenseCheckMethod":{
+			"type": "string",
+			"enum": ["TDI","AMI"],
+			"title": "License check methodology. TDI is Teevr's License check, AMI for using AMI product code"
+			   },
+			   
+	"UseDeviceIDinTopic":{
+			"type": "boolean",
+			"title": "If enabled, device id will be added to published topics along with datasource name to identify the publisher of message.This can be disabled if the customers topic contains deviceid ",
+			"format": "checkbox",
+			 	 "options": {
+    "hidden": true
+  }
+			},
+			   
+	    		
+	"InputSource":{
+			"type":"string",
+			"enum": [ "MQTT","COAP","SNAPI"],
+			"title": "Source of Data to Edge. Used by datagenerator",
+			 "options": {
+						    "hidden": true
+						  }
+			
+		},	
+	"Edge2Cloud":{
+			"type":"string",
+			"enum": [ "MQTT","COAP","SNAPI","IOTHUB"],
+			"title": "Transport protocol between edge and cloud for data. Used by edge. IOTHUB is for Azure IOTHub",
+			 "options": {
+						    "hidden": true
+						  }
+			
+		},
+	"UAID":{
+			"type":"string",
+			"title": "Unique Authentication Identifier for Customer workspace",
+			 "options": {
+						    "hidden": true
+						  }
+			
+		},		
+	"LogLevel":{
+			"type":"string",
+			"enum": ["INFO","FATAL","ERROR","WARN","DEBUG","TRACE"],
+			"title": "Log Level"
+			
+		}
+			
+			
+
+	}
+},
+
+"compression":
+	{
+	"type": "object",
+	"title": "Compression",
+	 "options": {
+    "hidden": true
+  },
+	"properties":{
+		"SampleSize":{
+			"type": "integer",
+			"title": "Sample Size to be used for Symbol Generation"
+			   },
+		"LowBitsSize":{
+			"type": "integer",
+			"title": "Bits size at lower end"
+			   },	   
+		"HighBitsSize":{
+			"type": "integer",
+			"title": "Bits size at higher end"
+			   },		   
+		"MaxPrecision":{
+			"type": "integer",
+			"title": "Maximum number of decimal points supported"
+			   },		   
+		"UsePfxEncoding":{
+			"type": "boolean",
+			"title": "Use Prefix Encoding in compression"
+			   },
+		"EnableBatch":{
+			"type": "boolean",
+			"title": "Enable Batch mode for compression. Instead of compressing and sending every sample, consolidate batch numsamples for compression"
+			   },	   
+		"BatchSize":{
+			"type": "integer",
+			"title": "Number of samples to be consolidated before compressing and sending it across."
+			   },	   
+		"RegressionSampleSize":{
+			"type": "integer",
+			"title": "Sample Size to be used for Linear and Polynomial Regression "
+				},
+		"EnableLinearRegression":{
+			"type": "boolean",
+			"title": "Enable Linear Regression",
+			 "format": "checkbox"
+				},
+		"EnablePolyRegression":{
+			"type": "boolean",
+			"title": "Enable Polynomial Regression",
+			 "format": "checkbox"
+				}
+			}
+	},
+
+"mlad":
+	{
+	"type": "object",
+	"title": "Machine Learning Anomaly Detection",
+	 "options": {
+    "hidden": true
+  },
+	"properties":{
+		"SampleSize":{
+			"type": "integer",
+			"title": "Sample Size to be used for anomaly detection algorithm"
+			   },
+		"LowThreshold":{
+			"type": "integer",
+			"title": "Lower Threshold for event/anomaly detection "
+			   },	   
+		"HighThreshold":{
+			"type": "integer",
+			"title": "Higher Threshold for event/anomaly detection"
+			   },
+		"CollectData":{
+			"type": "boolean",
+			"default": false,
+			"format": "checkbox",
+			"title": "Flag to enable analytics data dump to console. To be used for debugging purposes only"
+			   }		   
+				   		   
+			}
+	},
+
+"websockets":
+	{
+	"type": "object",
+	"title": "Websockets",
+	 "options": {
+    "hidden": true
+  },
+	"properties":{
+		"EnableWebsockets":{
+			"type": "boolean",
+			"title": "Enable Websockets for publish data",
+			"default": true,
+			"format": "checkbox"
+			   },
+		"ServerAddress": {
+				"type": "string",
+				"title": "Websockets Server Address",
+				"default": "127.0.0.1"
+				},
+		"Port": {
+				"type": "integer",
+				"title": "Port",
+				"default": 8887
+			}
+		}
+	}
+
+
+},
+"required": ["MQTT","advanced"]
+
+}

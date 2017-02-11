@@ -1,0 +1,58 @@
+{
+  "Model": [
+    {
+      "Name": "CurrentInputSize",
+      "DataType": "Number",
+      "Precision": 2,
+      "IsMetaData": false
+    },
+    {
+      "Name": "CurrentZippedInputSize",
+      "DataType": "Number",
+      "Precision": 2,
+      "IsMetaData": false
+    },
+    {
+      "Name": "CurrentDataXlatorSize",
+      "DataType": "Number",
+      "Precision": 2,
+      "IsMetaData": false
+    },
+    {
+      "Name": "TotalInputSize",
+      "DataType": "Number",
+      "Precision": 2,
+      "IsMetaData": false
+    },
+    {
+      "Name": "TotalZippedInputSize",
+      "DataType": "Number",
+      "Precision": 2,
+      "IsMetaData": false
+    },
+    {
+      "Name": "TotalDataXlatorSize",
+      "DataType": "Number",
+      "Precision": 2,
+      "IsMetaData": false
+    },
+    {
+      "Name": "AvgGzipTime(us)",
+      "DataType": "Number",
+      "Precision": 2,
+      "IsMetaData": false
+    },
+    {
+      "Name": "AvgCompressionTime(us)",
+      "DataType": "Number",
+      "Precision": 2,
+      "IsMetaData": false
+    },
+    {
+      "Name": "MsgCount",
+      "DataType": "Number",
+      "Precision": 0,
+      "IsMetaData": false
+    }
+  ]
+}

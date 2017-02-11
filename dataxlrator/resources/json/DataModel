@@ -1,0 +1,45 @@
+{"$schema": "http://json-schema.org/draft-04/schema#",
+"title": " ",
+"options": {
+    "disable_collapse": true
+  },
+"type": "object",
+"properties": {
+
+"Model":
+{
+"title":" Mappped Data ",
+"type":"array",
+"format": "tabs",
+"items":
+{
+"title":"DataField",
+"type": "object",
+"headerTemplate": "{{ i1 }} - {{ self.Name }}",
+"properties": {
+"Name":{"type":"string",
+"title":"Name" },
+"DataType": {
+"type":"string",
+"enum":["Number", "String","Boolean"]
+},
+"Precision": {"type":"integer",
+ "options": {
+    "hidden": true
+  }
+},
+
+"IsMetaData": {"type":"boolean", "format":"checkbox", 
+
+"options": {
+    "hidden": true
+  }
+}
+
+}, "required": ["Name","DataType"]
+}
+
+}
+},
+"required": ["Model"]
+}
