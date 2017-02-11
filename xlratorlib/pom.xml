@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2015-16,  Teevr Data Inc. All Rights Reserved 
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+ 
+ 	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>teevr-apps-libs</groupId>
+	<artifactId>teevr-dataxlrator-lib</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0.15</version>
+	<name>Teevr Data Accelerator Library</name>
+	
+	<description>Teevr Data Accelerator Library</description>
+	<url>http://www.teevr.io</url>
+    <build>
+
+      <plugins>
+
+	    <plugin>
+			    <groupId>org.jsonschema2pojo</groupId>
+			    <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+			    <version>0.4.15</version>
+			    <configuration>
+			        <sourceDirectory>${basedir}/resources/json</sourceDirectory>
+			        <sourceType>jsonschema</sourceType>
+			         <annotationStyle>gson</annotationStyle>
+			        <targetPackage>io.teevr.config</targetPackage>
+			        <outputDirectory>${basedir}/src/main/java</outputDirectory>
+			    </configuration>
+			    <executions>
+			        <execution>
+			            <goals>
+			                <goal>generate</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			</plugin>
+<!-- 		
+		<plugin>
+		    <groupId>com.github.os72</groupId>
+		    <artifactId>protoc-jar-maven-plugin</artifactId>
+		    <version>3.0.0-b3</version>
+		    <executions>
+		        <execution>
+		            <phase>generate-sources</phase>
+		            <goals>
+		                <goal>run</goal>
+		            </goals>
+		            <configuration>
+		                <protocVersion>3.0.0</protocVersion> 
+		                <type>java</type>
+		                <addSources>none</addSources>
+		                <outputDirectory>src/main/java</outputDirectory>
+		                <includeDirectories>
+		                    <include>resources/proto</include>
+		                </includeDirectories>
+		                <inputDirectories>
+		                    <include>resources/proto</include>
+		                </inputDirectories>
+		            </configuration>
+		        </execution>
+		    </executions>
+		</plugin>
+ -->		
+		    <plugin>
+			    <artifactId>maven-resources-plugin</artifactId>
+			    <version>2.7</version>
+			    <executions>
+			      <execution>
+			        <id>copy-resources</id>
+			        <phase>validate</phase>
+			        <goals>
+			          <goal>copy-resources</goal>
+			        </goals>
+			        <configuration>
+			        <outputDirectory>${basedir}/target/classes</outputDirectory>
+			        <resources>
+			             <resource>
+					    <directory>${basedir}/resources</directory>
+				        <includes>
+				     	 <include>log4j.properties</include>
+				        </includes>
+				      </resource>
+				      <resource>
+					<directory>${basedir}/resources/pubkey</directory>
+				        <includes>
+				     	 <include>*.*</include>
+				        </includes>
+				      </resource>
+
+				      </resources>
+			        </configuration>
+			      </execution>
+			    </executions>
+			  </plugin>
+
+			 <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                
+                <executions>
+                    <execution>
+                    <phase>install</phase> 
+                        <configuration>
+                            <target>
+                              <!-- make a fileset of the libraries, these are not obfuscated -->
+                               <!--path id="external.lib.path">
+                               <fileset dir="${project.build.directory}\lib" includes="*.jar"/>
+                                </path -->
+
+                           	   <property name="compile_classpath" refid="maven.compile.classpath"/>
+                           	   <property name="runtime_classpath" refid="maven.runtime.classpath"/>	
+                               <ant antfile="build.xml"/>  
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+
+			
+	  </plugins>
+	</build>
+	
+	<dependencies>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.5</version>
+		</dependency>
+<!-- 		
+		<dependency>
+        	<groupId>com.google.protobuf</groupId>
+        	<artifactId>protobuf-java</artifactId>
+        	<version>3.0.0-beta-3</version>
+       	</dependency>
+-->
+		<dependency>
+		  <groupId>org.apache.commons</groupId>
+		  <artifactId>commons-math3</artifactId>
+		  <version>3.6.1</version>
+		</dependency>
+	
+       	<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+	    <dependency>
+	        <groupId>commons-lang</groupId>
+	        <artifactId>commons-lang</artifactId>
+	        <version>2.4</version>
+	    </dependency>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcpg-jdk15on</artifactId>
+			<version>1.52</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.amazonaws</groupId>
+		    <artifactId>aws-java-sdk-ec2</artifactId>
+		    <version>1.11.55</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.amazonaws</groupId>
+		    <artifactId>aws-java-sdk-marketplacemeteringservice</artifactId>
+		    <version>1.11.55</version>
+		</dependency>
+
+		
+	</dependencies>
+
+
+
+
+ <pluginRepositories>
+
+ </pluginRepositories>
+</project>

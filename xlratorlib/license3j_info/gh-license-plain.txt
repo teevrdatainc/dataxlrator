@@ -1,0 +1,3 @@
+edition=GHtrial
+expiryDate=2016-09-15
+issueDate=2017-07-10

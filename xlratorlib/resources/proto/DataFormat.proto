@@ -1,0 +1,26 @@
+syntax = "proto3";
+package io.teevr.config;
+option java_outer_classname = "ProtoMessage";
+message MessageFormatter {
+	enum Command {
+		RCOMBO=0;
+		DATAMODEL=1;
+		SCALE=2;
+		COMPRESSED=3;
+		JSONMODEL=4;
+		STRPAYLOAD=5;
+		ARRUPDATE=6;
+		COMBO=7;
+		
+	}
+					Command commandID=1;
+					bytes dataPayload=2;
+ 
+  }
+  
+  
+message MessageFormatterArray {
+  uint32 sequenceNum=1;
+  repeated MessageFormatter msgFormatter = 2;
+}
+  

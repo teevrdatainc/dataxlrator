@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- file build.xml in your project root directory -->
+
+<!-- ANT build script for yfiles                       -->
+<!-- The java based ANT tool is available from         -->
+<!-- http://jakarta.apache.org/ant                     -->
+<!-- This file demonstrates the use of the yGuard byte -->
+<!-- code obfuscator from yWorks Gmbh                  -->
+<!-- yGuard can be downloaded from                     -->
+<!--- http://www.yworks.com/products/yguard            -->
+
+<project name="project" default="yguard" basedir=".">
+
+
+<!-- obfuscate -->
+<target  name="yguard">
+     					<!--  <echo message="compile classpath: ${compile_classpath}"/>
+     					 <echo message="runtime classpath: ${runtime_classpath}"/>
+						 -->
+ 							<taskdef name="yguard" classname="com.yworks.yguard.YGuardTask" classpath="yguard/yguard.jar"/>
+                                <yguard>
+                                    <!-- externalclasses refid="external.lib.path"/-->
+                                    <inoutpair in="target/${project.artifactId}-${project.version}.jar" out="target/${project.artifactId}-${project.version}.jar"/>
+                       				    <externalclasses>
+									       <pathelement path="${compile_classpath}" />
+									    </externalclasses>             
+                                    <shrink  logfile="${project.build.directory}/yguard-shrink.log.xml">
+                                        <property name="error-checking" value="pedantic"/>
+                                                                                
+										<keep>	
+	                                        <class classes="protected" methods="protected" fields="protected">
+										        <patternset>
+										          <include name="io.teevr.dataxlrator.Compressor"/>
+										          <include name="io.teevr.dataxlrator.Decompressor"/>
+											<include name="io.teevr.dataxlrator.DataFormat"/>	
+										          <include name="io.teevr.config.*"/>
+										           
+	         
+										        </patternset>
+										      </class>
+							   <field class="io.teevr.dataxlrator.Constants" name="Format"/>
+
+  	
+										      </keep>
+                                    </shrink>
+                                    
+                                    <rename  logfile="${project.build.directory}/yguard-rename.log.xml" replaceClassNameStrings="true">
+                                        <property name="error-checking" value="pedantic"/>
+                                                                                
+										<keep>	
+									        <class classes="protected"  methods="protected" fields="protected">
+										        <patternset>
+										          
+										          <include name="io.teevr.dataxlrator.Compressor"/>
+										          <include name="io.teevr.dataxlrator.Decompressor"/>
+											   <include name="io.teevr.dataxlrator.DataFormat"/>
+										         <include name="io.teevr.config.*"/>
+										 		  	         
+										        </patternset>
+										      </class>
+									           <field class="io.teevr.dataxlrator.Constants" name="Format"/>
+
+
+										      </keep>
+                                    </rename>		                
+                                </yguard>
+</target>
+
+</project>
+
+<!-- end file build.xml -->
+

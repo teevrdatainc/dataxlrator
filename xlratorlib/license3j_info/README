@@ -1,0 +1,10 @@
+http://verhas.github.io/License3j/tuto.html
+
+
+java -classpath bcprov-jdk15on-1.53.jar:bcpg-jdk15on-1.52.jar:bcpkix-jdk15on-1.53.jar:.:license3j-1.0.7.jar License3j
+
+// Example: Encode
+java -classpath bcprov-jdk15on-1.53.jar:bcpg-jdk15on-1.52.jar:bcpkix-jdk15on-1.53.jar:.:license3j-1.0.7.jar License3j encode --license-file=license-plain.txt --keyring-file=secring.gpg --key=VipinAgrawal3 --password=t33vrd@t@ --output=teevr-license-key.out
+
+// Example: decode
+java -classpath bcprov-jdk15on-1.53.jar:bcpg-jdk15on-1.52.jar:bcpkix-jdk15on-1.53.jar:.:license3j-1.0.7.jar License3j decode --license-file=teevr-license-key.out  --keyring-file=pubring.gpg
